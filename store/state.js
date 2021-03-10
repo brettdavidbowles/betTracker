@@ -4,5 +4,5 @@ export default () => ({
   statNumbers: [3, 2, 1, 5],
   statTypes: ['trb', 'trb', 'trb', 'trb'],
   overUnders: ['over', 'under', 'over', 'under'],
-  winLoss: []
+  winsLosses: []
 })

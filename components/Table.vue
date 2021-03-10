@@ -11,20 +11,22 @@
             <th>Win/Loss</th>
         </tr>
       </thead>
-      <tr v-for="(name, index) in names" :key="name" class="bg-emerald-200">
+      <tbody>
+      <tr v-for="(name, index) in names" :key="name">
           <td> {{ name }} </td>
           <td> {{ dates[index] }} </td>
           <td> {{ statNumbers[index] }}</td>
           <td> {{ statTypes[index] }} </td>
           <td> {{ overUnders[index] }} </td>
-          <td> <select v-model="winLoss">
+          <td> <select v-model="winLoss" @change="addWOrL">
                <option disabled value="">Win or Loss?</option>
-               <option>Win</option>
-               <option>Loss</option>
+               <option value="1"> Win </option>
+               <option value="0"> Loss </option>
                </select>
           </td>
           <!-- send wins/losses to state with mutation -->
       </tr>
+      </tbody>
   </table>
 </div>
 
@@ -39,6 +41,19 @@ export default {
     statNumbers: Array,
     statTypes: Array,
     overUnders: Array
+  },
+  data () {
+    return {
+      winLoss: ''
+    }
+  },
+  methods: {
+    addWOrL () {
+      if (this.winLoss) {
+        this.$store.commit('addWinLoss', this.winLoss)
+        console.log(this.$store.state.winsLosses)
+      }
+    }
   }
 }
 </script>

@@ -15,6 +15,6 @@ export default {
     state.overUnders.push(payload)
   },
   addWinLoss (state, payload) {
-    state.winLoss.push(payload)
+    state.winsLosses.push(payload)
   }
 }
