@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="p-8">
     <form @submit.prevent="subAll">
       <div>
         <input type="text" placeholder= "Player Name" v-model="player"><br>
@@ -7,7 +7,6 @@
         <input type="number" placeholder= "Stat" v-model="statNumber" step="0.5"><br>
         <select v-model="statType">
           <option disabled value="">Pick one</option>
-          <!-- disabled value isn't showing up until after first selection -->
           <option value= "trb">Total Rebounds</option>
           <option value= "pts">Points</option>
           <option value= "ass">Assists</option>
@@ -83,8 +82,9 @@ export default {
         this.statType = ''
         this.$store.commit('addOverUnder', this.overUnder)
         this.overUnder = ''
-        // radio button doesn't clear for some reason
-        console.log(this.overUnder)
+        this.$store.commit('addWinLoss', '')
+
+        console.log(this.$store.state.winsLosses)
       } else {
         alert('Incomplete Form')
       }

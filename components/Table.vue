@@ -18,12 +18,7 @@
           <td> {{ statNumbers[index] }}</td>
           <td> {{ statTypes[index] }} </td>
           <td> {{ overUnders[index] }} </td>
-          <td> <select v-model="winLoss" @change="addWOrL">
-               <option disabled value="">Win or Loss?</option>
-               <option value="1"> Win </option>
-               <option value="0"> Loss </option>
-               </select>
-          </td>
+          <td><TableSelect :tableSelectIndex=index></TableSelect></td>
           <!-- send wins/losses to state with mutation -->
       </tr>
       </tbody>
@@ -33,6 +28,8 @@
 </template>
 
 <script>
+import TableSelect from '../components/TableSelect'
+
 export default {
   name: 'Table',
   props: {
@@ -42,18 +39,8 @@ export default {
     statTypes: Array,
     overUnders: Array
   },
-  data () {
-    return {
-      winLoss: ''
-    }
-  },
-  methods: {
-    addWOrL () {
-      if (this.winLoss) {
-        this.$store.commit('addWinLoss', this.winLoss)
-        console.log(this.$store.state.winsLosses)
-      }
-    }
+  components: {
+    TableSelect
   }
 }
 </script>

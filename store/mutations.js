@@ -16,5 +16,8 @@ export default {
   },
   addWinLoss (state, payload) {
     state.winsLosses.push(payload)
+  },
+  chooseWinLoss (state, [payload, index]) {
+    state.winsLosses.splice(index, 1, payload)
   }
 }
