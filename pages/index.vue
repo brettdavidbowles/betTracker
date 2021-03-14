@@ -22,19 +22,24 @@
     <Table
       :names="players"
       :dates="dates"
+      :overUnders="overUnders"
       :statNumbers="statNumbers"
       :statTypes="statTypes"
-      :overUnders="overUnders"></Table>
+      ></Table>
     </div>
+    <PercentageTracker></PercentageTracker>
   </div>
 </template>
 
 <script>
 import Table from '../components/Table'
+import PercentageTracker from '../components/PercentageTracker'
+
 export default {
   name: 'App',
   components: {
-    Table
+    Table,
+    PercentageTracker
   },
   data () {
     return {
@@ -83,8 +88,6 @@ export default {
         this.$store.commit('addOverUnder', this.overUnder)
         this.overUnder = ''
         this.$store.commit('addWinLoss', '')
-
-        console.log(this.$store.state.winsLosses)
       } else {
         alert('Incomplete Form')
       }

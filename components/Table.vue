@@ -5,9 +5,9 @@
         <tr>
             <th>Player Name</th>
             <th>Game Date</th>
+            <th>Over/Under</th>
             <th>Stat</th>
             <th>Stat Type</th>
-            <th>Over/Under</th>
             <th>Win/Loss</th>
         </tr>
       </thead>
@@ -15,11 +15,10 @@
       <tr v-for="(name, index) in names" :key="name">
           <td> {{ name }} </td>
           <td> {{ dates[index] }} </td>
+          <td> {{ overUnders[index] }} </td>
           <td> {{ statNumbers[index] }}</td>
           <td> {{ statTypes[index] }} </td>
-          <td> {{ overUnders[index] }} </td>
           <td><TableSelect :tableSelectIndex=index></TableSelect></td>
-          <!-- send wins/losses to state with mutation -->
       </tr>
       </tbody>
   </table>
