@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <select v-model="winLoss" @change="addWOrL">
+  <select v-model="winLoss" @change="addWOrL">
       <option disabled value="">Win or Loss?</option>
       <option value="1"> Win </option>
       <option value="0"> Loss </option>
-    </select>
-  </div>
+  </select>
 </template>
 
 <script>

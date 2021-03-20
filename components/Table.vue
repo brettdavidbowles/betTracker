@@ -1,28 +1,26 @@
 <template>
-<div>
-  <table class="table">
-      <thead>
-        <tr>
-            <th>Player Name</th>
-            <th>Game Date</th>
-            <th>Over/Under</th>
-            <th>Stat</th>
-            <th>Stat Type</th>
-            <th>Win/Loss</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr v-for="(name, index) in names" :key="name">
-          <td> {{ name }} </td>
-          <td> {{ dates[index] }} </td>
-          <td> {{ overUnders[index] }} </td>
-          <td> {{ statNumbers[index] }}</td>
-          <td> {{ statTypes[index] }} </td>
-          <td><TableSelect :tableSelectIndex=index></TableSelect></td>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Player Name</th>
+        <th>Game Date</th>
+        <th>Over/Under</th>
+        <th>Stat</th>
+        <th>Stat Type</th>
+        <th>Win/Loss</th>
       </tr>
-      </tbody>
-  </table>
-</div>
+    </thead>
+    <tbody>
+      <tr v-for="(name, index) in names" :key="name">
+        <td> {{ name }} </td>
+        <td> {{ dates[index] }} </td>
+        <td> {{ overUnders[index] }} </td>
+        <td> {{ statNumbers[index] }}</td>
+        <td> {{ statTypes[index] }} </td>
+        <td><TableSelect :tableSelectIndex=index></TableSelect></td>
+      </tr>
+    </tbody>
+</table>
 
 </template>
 

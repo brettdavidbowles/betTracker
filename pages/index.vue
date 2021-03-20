@@ -1,10 +1,11 @@
 <template>
   <div class="p-8">
+    <img src="~/assets/nbalogo.jpg" class="h-24"/>
     <form @submit.prevent="subAll">
       <div>
-        <input type="text" placeholder= "Player Name" v-model="player"><br>
+        <input class="form-input border-2 rounded" type="text" placeholder= "Player Name" v-model="player"><br>
         <input type="date" placeholder= "Game Date" v-model="date"><br>
-        <input type="number" placeholder= "Stat" v-model="statNumber" step="0.5"><br>
+        <input class="form-input border-2 rounded" type="number" placeholder= "Stat" v-model="statNumber" step="0.5"><br>
         <select v-model="statType">
           <option disabled value="">Pick one</option>
           <option value= "trb">Total Rebounds</option>
@@ -18,6 +19,15 @@
         <button type="submit">Submit</button>
       </div>
     </form>
+    <div>
+      <button @click="getThumbnail">add rando</button>
+      <ul>
+        <li v-for="rando in randos" :key="rando.index">{{ rando.results[0].picture.thumbnail }}</li>
+      </ul>
+    </div>
+    <div v-for="rando in randos" :key="rando.index">
+      <img :src="rando.results[0].picture.thumbnail">
+    </div>
     <div>
     <Table
       :names="players"
@@ -47,7 +57,8 @@ export default {
       date: '',
       statNumber: '',
       statType: '',
-      overUnder: ''
+      overUnder: '',
+      rando: ''
     }
   },
   computed: {
@@ -65,6 +76,9 @@ export default {
     },
     overUnders () {
       return this.$store.state.overUnders
+    },
+    randos () {
+      return this.$store.state.randos
     }
   },
 
@@ -94,16 +108,31 @@ export default {
     },
     removePlayer (index) {
       this.$store.commit('removePlayer', index)
+    },
+    getThumbnail () {
+      this.$store.dispatch('addRando')
     }
+    /* async getThumbnail () {
+      const rando = await this.$axios.get('https://randomuser.me/api/')
+      this.rando = rando
+      console.log(rando.gender)
+    } */
   }
+  /* async fetch () {
+    this.pictures = await fetch(
+      'https://randomuser.me/api/?inc=picture.thumbnail'
+    ).then(res => res.json())
+  } */
+
 }
+
 </script>
 
 <style>
 /* .container {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 } */
-
+/*
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -142,5 +171,5 @@ export default {
 .links {
   padding-top: 15px;
 }
-
+ */
 </style>
