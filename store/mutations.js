@@ -20,6 +20,7 @@ export default {
   chooseWinLoss (state, [payload, index]) {
     state.winsLosses.splice(index, 1, payload)
   },
+  //   get dan to show you this refactor again, so the payload is an object instead of array
   addRando (state, payload) {
     state.randos.push(payload)
   }

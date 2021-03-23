@@ -1,7 +1,11 @@
 <template>
-  <div class="p-8">
-    <img src="~/assets/nbalogo.jpg" class="h-24"/>
-    <form @submit.prevent="subAll">
+  <div class="p-8 flex flex-wrap">
+    <div class="w-1/4 flex flex-col">
+      <img src="~/assets/nbalogo.jpg"/><br>
+      <p class="text-center font-bold">BETS</p>
+    </div>
+    <form @submit.prevent="subAll" class="w-1/2 flex flex-wrap justify-center">
+      <p class="w-full text-center"><b>Add Bet:</b></p>
       <div>
         <input class="form-input border-2 rounded" type="text" placeholder= "Player Name" v-model="player"><br>
         <input type="date" placeholder= "Game Date" v-model="date"><br>
@@ -19,17 +23,20 @@
         <button type="submit">Submit</button>
       </div>
     </form>
-    <div>
-      <button @click="getThumbnail">add rando</button>
+    <PercentageTracker class="w-1/4"></PercentageTracker>
+    <!-- <div>
+      <button @click="addRando">add rando</button>
       <ul>
         <li v-for="rando in randos" :key="rando.index">{{ rando.results[0].picture.thumbnail }}</li>
       </ul>
     </div>
     <div v-for="rando in randos" :key="rando.index">
       <img :src="rando.results[0].picture.thumbnail">
-    </div>
+    </div> -->
     <div>
     <Table
+      v-if="randos.length"
+      :urls="randos"
       :names="players"
       :dates="dates"
       :overUnders="overUnders"
@@ -37,8 +44,11 @@
       :statTypes="statTypes"
       ></Table>
     </div>
-    <PercentageTracker></PercentageTracker>
+    <div class="h-32 flex items-center">
+      <a href='./cards' class="text-blue-800">Cards Page</a>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -102,6 +112,8 @@ export default {
         this.$store.commit('addOverUnder', this.overUnder)
         this.overUnder = ''
         this.$store.commit('addWinLoss', '')
+        this.addRando()
+        console.log(this.randos)
       } else {
         alert('Incomplete Form')
       }
@@ -109,10 +121,10 @@ export default {
     removePlayer (index) {
       this.$store.commit('removePlayer', index)
     },
-    getThumbnail () {
+    addRando () {
       this.$store.dispatch('addRando')
     }
-    /* async getThumbnail () {
+    /* async addRando () {
       const rando = await this.$axios.get('https://randomuser.me/api/')
       this.rando = rando
       console.log(rando.gender)

@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h2>Win Percentage:</h2>
-    {{ winPercentage }}
+    <h2><b>Win Percentage:</b></h2>
+    <div class="text-3xl">
+      {{ winPercentage }}
+    </div>
   </div>
 </template>
 

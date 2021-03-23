@@ -13,6 +13,7 @@ export default {
     addWOrL () {
       if (this.winLoss) {
         this.$store.commit('chooseWinLoss', [this.winLoss, this.tableSelectIndex])
+        this.$emit('change-row-color')
       }
     }
   },

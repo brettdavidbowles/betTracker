@@ -1,17 +1,22 @@
 <template>
-<table class="table">
+<table class="table text-center">
   <thead>
     <tr>
+      <th>Picture</th>
       <th>Player Name</th>
-        <th>Game Date</th>
-        <th>Over/Under</th>
-        <th>Stat</th>
-        <th>Stat Type</th>
-        <th>Win/Loss</th>
+      <th>Game Date</th>
+      <th>Over/Under</th>
+      <th>Stat</th>
+      <th>Stat Type</th>
+      <th>Win/Loss</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="(name, index) in names" :key="name">
+        <td> <Picture
+             v-if="urls.length > index"
+             :url=urls[index].results[0].picture.thumbnail
+             ></Picture></td>
         <td> {{ name }} </td>
         <td> {{ dates[index] }} </td>
         <td> {{ overUnders[index] }} </td>
@@ -26,6 +31,7 @@
 
 <script>
 import TableSelect from '../components/TableSelect'
+import Picture from '../components/Picture'
 
 export default {
   name: 'Table',
@@ -34,10 +40,12 @@ export default {
     dates: Array,
     statNumbers: Array,
     statTypes: Array,
-    overUnders: Array
+    overUnders: Array,
+    urls: Array
   },
   components: {
-    TableSelect
+    TableSelect,
+    Picture
   }
 }
 </script>
