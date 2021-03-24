@@ -1,5 +1,5 @@
 <template>
-<table class="table text-center">
+<table class="table text-center mt-4">
   <thead>
     <tr>
       <th>Picture</th>
@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(name, index) in names" :key="name">
+      <tr v-for="(name, index) in names" :key="name" :class="{'bg-green-300': winsLosses[index] === '1', 'bg-red-300': winsLosses[index] === '0'}">
         <td> <Picture
              v-if="urls.length > index"
              :url=urls[index].results[0].picture.thumbnail
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import TableSelect from '../components/TableSelect'
 import Picture from '../components/Picture'
 
@@ -46,6 +47,11 @@ export default {
   components: {
     TableSelect,
     Picture
+  },
+  computed: {
+    ...mapState([
+      'winsLosses'
+    ])
   }
 }
 </script>

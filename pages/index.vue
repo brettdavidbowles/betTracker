@@ -1,29 +1,43 @@
 <template>
   <div class="p-8 flex flex-wrap">
-    <div class="w-1/4 flex flex-col">
-      <img src="~/assets/nbalogo.jpg"/><br>
-      <p class="text-center font-bold">BETS</p>
+    <div class="w-1/4 relative">
+      <img src="~/assets/nbalogo.jpg" class="absolute">
+      <p class="w-full absolute bottom-0 mr-1 mb-10 text-center">
+        <b>BETS</b>
+      </p>
     </div>
-    <form @submit.prevent="subAll" class="w-1/2 flex flex-wrap justify-center">
-      <p class="w-full text-center"><b>Add Bet:</b></p>
+    <form class="w-1/2 flex flex-wrap justify-center" @submit.prevent="subAll">
+      <p class="w-full text-center">
+        <b>Add Bet:</b>
+      </p>
       <div>
-        <input class="form-input border-2 rounded" type="text" placeholder= "Player Name" v-model="player"><br>
-        <input type="date" placeholder= "Game Date" v-model="date"><br>
-        <input class="form-input border-2 rounded" type="number" placeholder= "Stat" v-model="statNumber" step="0.5"><br>
+        <input v-model="player" class="form-input border-2 rounded" type="text" placeholder="Player Name"><br>
+        <input v-model="date" type="date" placeholder="Game Date"><br>
+        <input v-model="statNumber" class="form-input border-2 rounded" type="number" placeholder="Stat" step="0.5"><br>
         <select v-model="statType">
-          <option disabled value="">Pick one</option>
-          <option value= "trb">Total Rebounds</option>
-          <option value= "pts">Points</option>
-          <option value= "ass">Assists</option>
+          <option disabled value="">
+            Pick one
+          </option>
+          <option value="trb">
+            Total Rebounds
+          </option>
+          <option value="pts">
+            Points
+          </option>
+          <option value="ass">
+            Assists
+          </option>
         </select><br>
-        <input type="radio" id="over" value="Over" v-model="overUnder">
+        <input id="over" v-model="overUnder" type="radio" value="Over">
         <label for="over">Over</label>
-        <input type="radio" id="under" value="Under" v-model="overUnder">
+        <input id="under" v-model="overUnder" type="radio" value="Under">
         <label for="under">Under</label><br>
-        <button type="submit">Submit</button>
+        <button type="submit">
+          Submit
+        </button>
       </div>
     </form>
-    <PercentageTracker class="w-1/4"></PercentageTracker>
+    <PercentageTracker class="w-1/4" />
     <!-- <div>
       <button @click="addRando">add rando</button>
       <ul>
@@ -34,21 +48,20 @@
       <img :src="rando.results[0].picture.thumbnail">
     </div> -->
     <div>
-    <Table
-      v-if="randos.length"
-      :urls="randos"
-      :names="players"
-      :dates="dates"
-      :overUnders="overUnders"
-      :statNumbers="statNumbers"
-      :statTypes="statTypes"
-      ></Table>
+      <Table
+        v-if="randos.length"
+        :urls="randos"
+        :names="players"
+        :dates="dates"
+        :over-unders="overUnders"
+        :stat-numbers="statNumbers"
+        :stat-types="statTypes"
+      />
     </div>
     <div class="h-32 flex items-center">
-      <a href='./cards' class="text-blue-800">Cards Page</a>
+      <a href="./cards" class="text-blue-800">Cards Page</a>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -113,7 +126,6 @@ export default {
         this.overUnder = ''
         this.$store.commit('addWinLoss', '')
         this.addRando()
-        console.log(this.randos)
       } else {
         alert('Incomplete Form')
       }
