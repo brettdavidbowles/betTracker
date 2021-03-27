@@ -23,5 +23,11 @@ export default {
   //   get dan to show you this refactor again, so the payload is an object instead of array
   addRando (state, payload) {
     state.randos.push(payload)
+  },
+  getStat (state, payload) {
+    state.retrievedStats.push(payload)
+  },
+  getPlayer (state, payload) {
+    state.retrievedPlayers.push(payload)
   }
 }

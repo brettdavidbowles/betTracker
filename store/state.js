@@ -5,5 +5,7 @@ export default () => ({
   statTypes: [],
   overUnders: [],
   winsLosses: [],
-  randos: []
+  randos: [],
+  retrievedStats: [],
+  retrievedPlayers: []
 })

@@ -61,6 +61,9 @@
     <div class="h-32 flex items-center">
       <a href="./cards" class="text-blue-800">Cards Page</a>
     </div>
+    <div v-if="retrievedPlayers.length">
+      {{ retrievedPlayers }}
+    </div>
   </div>
 </template>
 
@@ -102,6 +105,9 @@ export default {
     },
     randos () {
       return this.$store.state.randos
+    },
+    retrievedPlayers () {
+      return this.$store.state.retrievedPlayers
     }
   },
 
@@ -126,6 +132,7 @@ export default {
         this.overUnder = ''
         this.$store.commit('addWinLoss', '')
         this.addRando()
+        this.addPlayer()
       } else {
         alert('Incomplete Form')
       }
@@ -135,19 +142,12 @@ export default {
     },
     addRando () {
       this.$store.dispatch('addRando')
+    },
+    addPlayer () {
+      this.$store.dispatch('getPlayer', this.players[this.players.length - 1])
     }
-    /* async addRando () {
-      const rando = await this.$axios.get('https://randomuser.me/api/')
-      this.rando = rando
-      console.log(rando.gender)
-    } */
-  }
-  /* async fetch () {
-    this.pictures = await fetch(
-      'https://randomuser.me/api/?inc=picture.thumbnail'
-    ).then(res => res.json())
-  } */
 
+  }
 }
 
 </script>
