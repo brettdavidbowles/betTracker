@@ -1,6 +1,6 @@
 export default {
-  addPlayer (state, payload) {
-    state.players.push(payload)
+  addPlayer (state, [firstName, lastName]) {
+    state.players.push(firstName + ' ' + lastName)
   },
   addDate (state, payload) {
     state.dates.push(payload)
@@ -29,5 +29,11 @@ export default {
   },
   getPlayer (state, payload) {
     state.retrievedPlayers.push(payload)
+  },
+  addPlayersNextPages (state, payload) {
+    const mergedPages = {
+      data: [...state.retrievedPlayers[state.retrievedPlayers.length - 1].data, ...payload.data]
+    }
+    state.retrievedPlayers.splice(state.retrievedPlayers.length - 1, 1, mergedPages)
   }
 }

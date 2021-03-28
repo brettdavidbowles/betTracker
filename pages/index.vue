@@ -11,7 +11,8 @@
         <b>Add Bet:</b>
       </p>
       <div>
-        <input v-model="player" class="form-input border-2 rounded" type="text" placeholder="Player Name"><br>
+        <input v-model="playerFirstName" class="form-input border-2 rounded" type="text" placeholder="First Name"><br>
+        <input v-model="playerLastName" class="form-input border-2 rounded" type="text" placeholder="Last Name"><br>
         <input v-model="date" type="date" placeholder="Game Date"><br>
         <input v-model="statNumber" class="form-input border-2 rounded" type="number" placeholder="Stat" step="0.5"><br>
         <select v-model="statType">
@@ -48,8 +49,8 @@
       <img :src="rando.results[0].picture.thumbnail">
     </div> -->
     <div>
+      <!-- removed v-if="randos.length" in table, wouldn't let me comment it out for some reason -->
       <Table
-        v-if="randos.length"
         :urls="randos"
         :names="players"
         :dates="dates"
@@ -63,6 +64,7 @@
     </div>
     <div v-if="retrievedPlayers.length">
       {{ retrievedPlayers }}
+      {{ retrievedStats }}
     </div>
   </div>
 </template>
@@ -79,7 +81,8 @@ export default {
   },
   data () {
     return {
-      player: '',
+      playerFirstName: '',
+      playerLastName: '',
       date: '',
       statNumber: '',
       statType: '',
@@ -108,20 +111,28 @@ export default {
     },
     retrievedPlayers () {
       return this.$store.state.retrievedPlayers
+    },
+    retrievedStats () {
+      return this.$store.state.retrievedStats
     }
+  },
+  mounted () {
+
   },
 
   methods: {
     subAll () {
       if (
-        this.player &&
+        this.playerFirstName &&
+        this.playerFirstName &&
         this.date &&
         this.statNumber &&
         this.statType &&
         this.overUnder
       ) {
-        this.$store.commit('addPlayer', this.player)
-        this.player = ''
+        this.$store.commit('addPlayer', [this.playerFirstName, this.playerLastName])
+        this.playerFirstName = ''
+        this.playerLastName = ''
         this.$store.commit('addDate', this.date)
         this.date = ''
         this.$store.commit('addStatNumber', this.statNumber)
@@ -131,8 +142,9 @@ export default {
         this.$store.commit('addOverUnder', this.overUnder)
         this.overUnder = ''
         this.$store.commit('addWinLoss', '')
-        this.addRando()
+        // this.addRando()
         this.addPlayer()
+        // this.addStat()
       } else {
         alert('Incomplete Form')
       }
@@ -144,9 +156,12 @@ export default {
       this.$store.dispatch('addRando')
     },
     addPlayer () {
-      this.$store.dispatch('getPlayer', this.players[this.players.length - 1])
+      this.$store.dispatch('getPlayerData', [this.players[this.players.length - 1], this.dates[this.dates.length - 1]])
+    },
+    async addStat () {
+      const retrievedID = await this.retrievedPlayers[this.players.length - 1]
+      this.$store.dispatch('getStat', [retrievedID.data.id, this.dates[this.players.length - 1]])
     }
-
   }
 }
 

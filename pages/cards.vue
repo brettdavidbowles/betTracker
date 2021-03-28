@@ -2,8 +2,9 @@
   <div>
     <p>This is the cards page</p>
     <div class="flex flex-wrap">
-      <Card v-for="player in players" :key="player.index" :title="players" />
+      <Card v-for="player in players" :key="player.index" :title="player.title" />
     </div>
+    {{ players }}
     <a href="./">Back to Main Page</a>
   </div>
 </template>
