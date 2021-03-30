@@ -6,13 +6,14 @@
       <th>Player Name</th>
       <th>Game Date</th>
       <th>Over/Under</th>
-      <th>Stat</th>
+      <th>Bet Stat</th>
       <th>Stat Type</th>
+      <th>Actual Stat</th>
       <th>Win/Loss</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(name, index) in names" :key="name" :class="{'bg-green-300': winsLosses[index] === '1', 'bg-red-300': winsLosses[index] === '0'}">
+      <tr v-for="(name, index) in names" :key="name.index" :class="{'bg-green-300': winsLosses[index] === '1', 'bg-red-300': winsLosses[index] === '0'}">
         <!-- <td> <Picture -->
              <!-- v-if="urls.length > index" -->
              <!-- :url=urls[index].results[0].picture.thumbnail -->
@@ -22,6 +23,7 @@
         <td> {{ overUnders[index] }} </td>
         <td> {{ statNumbers[index] }}</td>
         <td> {{ statTypes[index] }} </td>
+        <td> {{ actualStats[index] }} </td>
         <td><TableSelect :tableSelectIndex=index></TableSelect></td>
       </tr>
     </tbody>
@@ -42,7 +44,8 @@ export default {
     statNumbers: Array,
     statTypes: Array,
     overUnders: Array,
-    urls: Array
+    urls: Array,
+    actualStats: Array
   },
   components: {
     TableSelect

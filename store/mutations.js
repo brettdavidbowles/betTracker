@@ -25,7 +25,7 @@ export default {
     state.randos.push(payload)
   },
   getStat (state, payload) {
-    state.retrievedStats.push(payload)
+    state.stats.allRetrievedStats.push(payload)
   },
   getPlayer (state, payload) {
     state.retrievedPlayers.push(payload)
@@ -35,5 +35,18 @@ export default {
       data: [...state.retrievedPlayers[state.retrievedPlayers.length - 1].data, ...payload.data]
     }
     state.retrievedPlayers.splice(state.retrievedPlayers.length - 1, 1, mergedPages)
+  },
+  setAssists (state, payload) {
+    state.stats.specificRetrievedStats.retrievedAssists.push(payload)
+  },
+  setPoints (state, payload) {
+    state.stats.specificRetrievedStats.retrievedPoints.push(payload)
+  },
+  setTotalRebounds (state, payload) {
+    state.stats.specificRetrievedStats.retrievedTotalRebounds.push(payload)
+  },
+  setNeededStat (state, payload) {
+    // const neededStat = window['retrieved' + this.statTypes[this.statTypes.length - 1].replace(' ', '')]
+    state.stats.statsNeeded.push(payload)
   }
 }

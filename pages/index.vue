@@ -19,13 +19,13 @@
           <option disabled value="">
             Pick one
           </option>
-          <option value="trb">
+          <option value="Total Rebounds">
             Total Rebounds
           </option>
-          <option value="pts">
+          <option value="Points">
             Points
           </option>
-          <option value="ass">
+          <option value="Assists">
             Assists
           </option>
         </select><br>
@@ -51,25 +51,24 @@
     <div>
       <!-- removed v-if="randos.length" in table, wouldn't let me comment it out for some reason -->
       <Table
+        v-if="statTypes.length"
         :urls="randos"
         :names="players"
         :dates="dates"
         :over-unders="overUnders"
         :stat-numbers="statNumbers"
         :stat-types="statTypes"
+        :actual-stats="stats.statsNeeded"
       />
     </div>
     <div class="h-32 flex items-center">
       <a href="./cards" class="text-blue-800">Cards Page</a>
     </div>
-    <div v-if="retrievedPlayers.length">
-      {{ retrievedPlayers }}
-      {{ retrievedStats }}
-    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Table from '../components/Table'
 import PercentageTracker from '../components/PercentageTracker'
 
@@ -91,30 +90,17 @@ export default {
     }
   },
   computed: {
-    players () {
-      return this.$store.state.players
-    },
-    dates () {
-      return this.$store.state.dates
-    },
-    statNumbers () {
-      return this.$store.state.statNumbers
-    },
-    statTypes () {
-      return this.$store.state.statTypes
-    },
-    overUnders () {
-      return this.$store.state.overUnders
-    },
-    randos () {
-      return this.$store.state.randos
-    },
-    retrievedPlayers () {
-      return this.$store.state.retrievedPlayers
-    },
-    retrievedStats () {
-      return this.$store.state.retrievedStats
-    }
+    ...mapState([
+      'players',
+      'dates',
+      'statNumbers',
+      'statTypes',
+      'overUnders',
+      'winsLosses',
+      'randos',
+      'retrievedPlayers',
+      'stats'
+    ])
   },
   mounted () {
 
@@ -142,9 +128,8 @@ export default {
         this.$store.commit('addOverUnder', this.overUnder)
         this.overUnder = ''
         this.$store.commit('addWinLoss', '')
-        // this.addRando()
-        this.addPlayer()
-        // this.addStat()
+        this.addPlayerData()
+        // this.$store.commit('setNeededStat', window['retrieved' + this.statTypes[this.statTypes.length - 1].replace(' ', '')])
       } else {
         alert('Incomplete Form')
       }
@@ -155,12 +140,8 @@ export default {
     addRando () {
       this.$store.dispatch('addRando')
     },
-    addPlayer () {
-      this.$store.dispatch('getPlayerData', [this.players[this.players.length - 1], this.dates[this.dates.length - 1]])
-    },
-    async addStat () {
-      const retrievedID = await this.retrievedPlayers[this.players.length - 1]
-      this.$store.dispatch('getStat', [retrievedID.data.id, this.dates[this.players.length - 1]])
+    addPlayerData () {
+      this.$store.dispatch('getPlayerData', [this.players[this.players.length - 1], this.dates[this.dates.length - 1], this.statTypes[this.statTypes.length - 1]])
     }
   }
 }

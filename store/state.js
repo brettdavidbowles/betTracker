@@ -6,6 +6,14 @@ export default () => ({
   overUnders: [],
   winsLosses: [],
   randos: [],
-  retrievedStats: [],
-  retrievedPlayers: []
+  retrievedPlayers: [],
+  stats: {
+    allRetrievedStats: [],
+    specificRetrievedStats: {
+      retrievedPoints: [],
+      retrievedAssists: [],
+      retrievedTotalRebounds: []
+    },
+    statsNeeded: []
+  }
 })

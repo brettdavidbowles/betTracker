@@ -3,7 +3,7 @@ export default {
     const rando = await this.$axios.$get('https://randomuser.me/api/')
     commit('addRando', rando)
   },
-  async getPlayerData ({ commit, state }, [name, date]) {
+  async getPlayerData ({ commit, state }, [name, date, statType]) {
     let counter = 2
     const retrievedPlayer = await this.$axios.$get(`https://www.balldontlie.io/api/v1/players?search=${name}`)
     // change get to set
@@ -15,13 +15,23 @@ export default {
       counter++
     }
     const retrievedPlayerId = state.retrievedPlayers[state.retrievedPlayers.length - 1].data[0].id
-    const retrievedStat = await this.$axios.$get(`https://www.balldontlie.io/api/v1/stats?player_ids[]=${retrievedPlayerId}&start_date[]=${date}`)
-    debugger
+    const retrievedStat = await this.$axios.$get(`https://www.balldontlie.io/api/v1/stats?player_ids[]=${retrievedPlayerId}&start_date=${date}&end_date=${date}`)
     // change get to set everywhere
     commit('getStat', retrievedStat)
+    // this is getting wet... make a generic function but not now it's midnight
+    const retrievedAssists = state.stats.allRetrievedStats[state.stats.allRetrievedStats.length - 1].data[0].ast
+    commit('setAssists', retrievedAssists)
+    const retrievedPoints = state.stats.allRetrievedStats[state.stats.allRetrievedStats.length - 1].data[0].pts
+    commit('setPoints', retrievedPoints)
+    const retrievedTotalRebounds = state.stats.allRetrievedStats[state.stats.allRetrievedStats.length - 1].data[0].reb
+    commit('setTotalRebounds', retrievedTotalRebounds)
+    const neededStatArray = state.stats.specificRetrievedStats[Object.keys(state.stats.specificRetrievedStats).filter(x => x.includes(statType.replace(' ', '')))]
+    const neededStat = neededStatArray[neededStatArray.length - 1]
+    commit('setNeededStat', neededStat)
   },
-  async getStat ({ commit }, [playerID, date]) {
-    const retrievedStat = await this.$axios.$get(`https://www.balldontlie.io/api/v1/stats?player_ids[]=${playerID}&start_date[]=${date}`)
-    commit('getStat', retrievedStat)
+  chooseStatType ({ commit, state }, statType) {
+    const neededStatArray = state.stats.specificRetrievedStats[Object.keys(state.stats.specificRetrievedStats).filter(x => x.includes(statType.replace(' ', '')))]
+    const neededStat = neededStatArray[0][neededStatArray.length - 1]
+    commit('setNeededStat', neededStat)
   }
 }
