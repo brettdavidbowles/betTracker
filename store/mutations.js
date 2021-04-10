@@ -24,10 +24,10 @@ export default {
   addRando (state, payload) {
     state.randos.push(payload)
   },
-  getStat (state, payload) {
+  setStat (state, payload) {
     state.stats.allRetrievedStats.push(payload)
   },
-  getPlayer (state, payload) {
+  setPlayer (state, payload) {
     state.retrievedPlayers.push(payload)
   },
   addPlayersNextPages (state, payload) {

@@ -5,7 +5,7 @@
       <Card v-for="player in players" :key="player.index" :title="player.title" />
     </div>
     {{ players }}
-    <a href="./">Back to Main Page</a>
+    <NuxtLink to="./">Back to Main Page</NuxtLink>
   </div>
 </template>
 

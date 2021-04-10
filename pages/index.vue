@@ -62,7 +62,7 @@
       />
     </div>
     <div class="h-32 flex items-center">
-      <a href="./cards" class="text-blue-800">Cards Page</a>
+      <NuxtLink to="./cards" class="text-blue-800">Cards Page</NuxtLink>
     </div>
   </div>
 </template>
@@ -110,7 +110,7 @@ export default {
     subAll () {
       if (
         this.playerFirstName &&
-        this.playerFirstName &&
+        this.playerLastName &&
         this.date &&
         this.statNumber &&
         this.statType &&
@@ -129,6 +129,7 @@ export default {
         this.overUnder = ''
         this.$store.commit('addWinLoss', '')
         this.addPlayerData()
+        console.log(this.stats.statsNeeded)
         // this.$store.commit('setNeededStat', window['retrieved' + this.statTypes[this.statTypes.length - 1].replace(' ', '')])
       } else {
         alert('Incomplete Form')
@@ -141,7 +142,8 @@ export default {
       this.$store.dispatch('addRando')
     },
     addPlayerData () {
-      this.$store.dispatch('getPlayerData', [this.players[this.players.length - 1], this.dates[this.dates.length - 1], this.statTypes[this.statTypes.length - 1]])
+      const currentIndex = this.players.length - 1
+      this.$store.dispatch('getPlayerData', [this.players[currentIndex], this.dates[currentIndex], this.statTypes[currentIndex], currentIndex])
     }
   }
 }

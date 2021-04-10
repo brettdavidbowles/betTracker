@@ -9,7 +9,7 @@
       <th>Bet Stat</th>
       <th>Stat Type</th>
       <th>Actual Stat</th>
-      <th>Win/Loss</th>
+      <!-- <th>Win/Loss</th> -->
       </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
         <td> {{ statNumbers[index] }}</td>
         <td> {{ statTypes[index] }} </td>
         <td> {{ actualStats[index] }} </td>
-        <td><TableSelect :tableSelectIndex=index></TableSelect></td>
+        <!-- <td><TableSelect :tableSelectIndex=index></TableSelect></td> -->
       </tr>
     </tbody>
 </table>
@@ -33,7 +33,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import TableSelect from '../components/TableSelect'
+// import TableSelect from '../components/TableSelect'
 // import Picture from '../components/Picture'
 
 export default {
@@ -48,7 +48,7 @@ export default {
     actualStats: Array
   },
   components: {
-    TableSelect
+    // TableSelect
     // Picture
   },
   computed: {
