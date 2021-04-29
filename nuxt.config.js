@@ -37,14 +37,34 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa',
+    '@nuxtjs/firebase',
+    'nuxt-uid-module'
+
   ],
+
+  'uid-module': {
+    name: 'uid', // property name(option)
+    plugin: false // when to use vue-uid mixin(option)
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
+  firebase: {
+    config: {
+      apiKey: 'AIzaSyAmEJ-kURZ02C6O7Bd__ysrM4xOrTqeLoo',
+      authDomain: 'bettracker-c950e.firebaseapp.com',
+      projectId: 'bettracker-c950e',
+      storageBucket: 'bettracker-c950e.appspot.com',
+      messagingSenderId: '168688297274',
+      appId: '1:168688297274:web:6d45c46fbcc7050ba11c03',
+      measurementId: 'G-6TFC71FGZQ'
+    },
+    services: {
+      auth: true
+    }
   }
 }

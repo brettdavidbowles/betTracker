@@ -3,6 +3,7 @@
   <thead>
     <tr>
       <!-- <th>Picture</th> -->
+      <th>Bet Number</th>
       <th>Player Name</th>
       <th>Game Date</th>
       <th>Over/Under</th>
@@ -18,6 +19,7 @@
              <!-- v-if="urls.length > index" -->
              <!-- :url=urls[index].results[0].picture.thumbnail -->
              <!-- ></Picture></td> -->
+        <td> <NuxtLink to= "this.bets">{{ index + 1 }} </NuxtLink> </td>
         <td> {{ name }} </td>
         <td> {{ dates[index] }} </td>
         <td> {{ overUnders[index] }} </td>

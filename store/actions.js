@@ -7,6 +7,8 @@ export default {
     let counter = 2
     const retrievedPlayer = await this.$axios.$get(`https://www.balldontlie.io/api/v1/players?search=${name}`)
     commit('setPlayer', retrievedPlayer)
+    // bet number should probably be a uuid but this will work for now
+    commit('addBetNumber', index + 1)
     // this next bit is only necessary if the data array.length > 1, if the first and last name are accurate this will be extremely rare, so can worry about this later hopefully
     while (counter <= retrievedPlayer.meta.total_pages) {
       const nextRetrievedPlayer = await this.$axios.$get(`https://www.balldontlie.io/api/v1/players?search=${name}&page=${counter}`)

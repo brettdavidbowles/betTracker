@@ -12,8 +12,13 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/firebase": "^7.5.0",
+    "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.8.3",
-    "nuxt": "^2.14.12"
+    "firebase": "^8.4.1",
+    "firebase-admin": "^9.6.0",
+    "nuxt": "^2.14.12",
+    "nuxt-uid-module": "^0.2.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",

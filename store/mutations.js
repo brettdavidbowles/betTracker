@@ -1,4 +1,7 @@
 export default {
+  addBetNumber (state, payload) {
+    state.betNumbers.push(payload)
+  },
   addPlayer (state, [firstName, lastName]) {
     state.players.push(firstName + ' ' + lastName)
   },

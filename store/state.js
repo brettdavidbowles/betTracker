@@ -1,4 +1,5 @@
 export default () => ({
+  betNumbers: [],
   players: [],
   dates: [],
   statNumbers: [],

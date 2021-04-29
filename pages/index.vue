@@ -1,9 +1,9 @@
 <template>
   <div class="p-8 flex flex-wrap">
     <div class="w-1/4 relative">
-      <img src="~/assets/nbalogo.jpg" class="absolute">
-      <p class="w-full absolute bottom-0 mr-1 mb-10 text-center">
-        <b>BETS</b>
+      <img src="~/assets/nbalogo.jpg" class="h-4/5">
+      <p class="w-full text-center">
+        <b>PROP BETS</b>
       </p>
     </div>
     <form class="w-1/2 flex flex-wrap justify-center" @submit.prevent="subAll">
@@ -91,6 +91,7 @@ export default {
   },
   computed: {
     ...mapState([
+      'betNumbers',
       'players',
       'dates',
       'statNumbers',
@@ -101,9 +102,6 @@ export default {
       'retrievedPlayers',
       'stats'
     ])
-  },
-  mounted () {
-
   },
 
   methods: {
