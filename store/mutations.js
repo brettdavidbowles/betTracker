@@ -51,5 +51,9 @@ export default {
   setNeededStat (state, payload) {
     // const neededStat = window['retrieved' + this.statTypes[this.statTypes.length - 1].replace(' ', '')]
     state.stats.statsNeeded.push(payload)
+  },
+  changeBetFormTrigger (state) {
+    state.betFormTrigger === 0 ? state.betFormTrigger = 1 : state.betFormTrigger = 0
+    console.log(state.betFormTrigger)
   }
 }

@@ -3,7 +3,7 @@
     <p>You are logged in as {{ user.email }}</p>
     <button @click.prevent="logout">Log Out</button><br>
     <NuxtLink to="./">Add Bets</NuxtLink>
-    {{ user.uid }}
+    {{ user }}
   </div>
 </template>
 

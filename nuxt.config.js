@@ -1,5 +1,6 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  target: 'static',
   head: {
     title: 'bet-tracker',
     htmlAttrs: {
@@ -64,7 +65,8 @@ export default {
       measurementId: 'G-6TFC71FGZQ'
     },
     services: {
-      auth: true
+      auth: true,
+      firestore: true
     }
   }
 }

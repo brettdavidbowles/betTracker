@@ -16,5 +16,6 @@ export default () => ({
       retrievedTotalRebounds: []
     },
     statsNeeded: []
-  }
+  },
+  betFormTrigger: 0
 })

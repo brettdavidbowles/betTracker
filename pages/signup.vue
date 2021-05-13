@@ -7,7 +7,7 @@
     <button type="submit">Submit</button>
     {{ passwordAlert }}
     </form>
-    <NuxtLink to="./signin">Already have an account? Click here!</NuxtLink>
+    <NuxtLink to="./">Already have an account? Click here!</NuxtLink>
   </div>
 
 </template>
@@ -22,9 +22,11 @@ export default {
       password: '',
       confirmPassword: '',
       user: '',
-      passwordAlert: ''
+      passwordAlert: '',
+      username: ''
     }
   },
+
   methods: {
     handleError (message) {
       alert(message)
@@ -37,8 +39,23 @@ export default {
             .auth
             .createUserWithEmailAndPassword(this.email, this.password).then((userCredential) => {
               this.user = userCredential.user
-              this.$router.push('./homePage')
             })
+          // this.$fire
+            // .firestore
+            // .collection('users')
+            // .doc(this.username)
+            // .set({
+            // username: this.username,
+            // email: this.email,
+            // password: this.password
+            // })
+            // .then(() => {
+            // console.log('doc written')
+            // })
+            // .catch((error) => {
+            // console.error('Error writing document: ', error)
+            // })
+          this.$router.push('./account/homepage')
         } catch (e) {
           this.handleError(e)
         }
