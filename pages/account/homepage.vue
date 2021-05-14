@@ -12,7 +12,7 @@
         The "Stats" page keeps track of your win percentage.<br>
         All actual data is pulled from the <a href='balldontlie.io' class='text-blue-700 underline'>balldontlie API</a>.
     </p>
-    <p class='absolute bottom-0'>You are logged in as {{ user.email }}</p>
+    <p>You are logged in as {{ user.email }}</p>
   </div>
 </template>
 
