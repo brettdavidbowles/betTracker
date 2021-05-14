@@ -5,13 +5,18 @@
         <b>Add Bet:</b>
       </p>
       <div>
-        <input v-model="playerFirstName" class="form-input border-2 rounded" type="text" placeholder="First Name"><br>
-        <input v-model="playerLastName" class="form-input border-2 rounded" type="text" placeholder="Last Name"><br>
+        <p>Game Date:</p>
         <input v-model="date" type="date" placeholder="Game Date"><br>
-        <input v-model="statNumber" class="form-input border-2 rounded" type="number" placeholder="Stat" step="0.5"><br>
+        <input v-model="playerFirstName" class="form-input border-2 rounded" type="text" placeholder="Player's First Name"><br>
+        <input v-model="playerLastName" class="form-input border-2 rounded" type="text" placeholder="Player's Last Name"><br>
+        <input id="over" v-model="overUnder" type="radio" value="Over">
+        <label for="over">Over</label>
+        <input id="under" v-model="overUnder" type="radio" value="Under">
+        <label for="under">Under</label><br>
+        <input v-model="statNumber" class="form-input border-2 rounded" type="number" placeholder="Bet Number" step="0.5"><br>
         <select v-model="statType">
           <option disabled value="">
-            Pick one
+            Stat Type
           </option>
           <option value="Total Rebounds">
             Total Rebounds
@@ -23,14 +28,10 @@
             Assists
           </option>
         </select><br>
-        <input id="over" v-model="overUnder" type="radio" value="Over">
-        <label for="over">Over</label>
-        <input id="under" v-model="overUnder" type="radio" value="Under">
-        <label for="under">Under</label><br>
-        <button type="submit">
+        <button class="text-blue-700 underline" type="submit">
           Submit
         </button>
-        <button @click.prevent="changeBetFormTrigger">Cancel</button>
+        <button @click.prevent="changeBetFormTrigger" class="text-blue-700 underline">Cancel</button>
       </div>
     </form>
 

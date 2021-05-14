@@ -1,12 +1,26 @@
 <template>
 <div v-if="this.user">
-  <button v-if="betFormTrigger === 0" @click.prevent="changeBetFormTrigger">Add Bet</button>
-  <AddBet v-if="betFormTrigger === 1"></AddBet>
-  <div>
+  <div class='flex underline text-blue-700 text-center'>
+    <NuxtLink to="./homepage" class='w-1/5'>Home Page</NuxtLink><br>
+    <NuxtLink to="./stats" class='w-1/5'>Your Stats</NuxtLink><br>
+    <button @click.prevent="logout" class='w-1/5'>Log Out</button>
+  </div>
+
+  <div class='flex items-center'>
+    <AddBet></AddBet>
+    <p class='align-middle text-center'>To see how this works, use some old games and fill the rest of the form with arbitrary inputs.
+      Here are some past games:<br><br>
+        Date: 10/29/2003, Lebron James<br>
+        Date: 02/02/1997, Kobe Bryant<br>
+        Date: 03/25/1986, Michael Jordan<br>
+        Date: 12/21/1979, Larry Bird<br>
+        Date: 03/25/2009, Shaquille O'Neal
+    </p>
+  </div>
+  <div v-if="statTypes.length">
       <!-- removed v-if="randos.length" in table, wouldn't let me comment it out for some reason -->
     <!-- use lifecycle hook (maybe) for actual stats so they update when pending games are put in -->
     <Table
-      v-if="statTypes.length"
       :urls="randos"
       :names="players"
       :dates="dates"
@@ -15,11 +29,16 @@
       :stat-types="statTypes"
       :actual-stats="stats.statsNeeded"
     />
+    <p>
+      The "Actual Stat" is retrieved from the API.<br>
+      If you won your bet, the row will be green.<br>
+      If you lost your bet, the row will be red.<br>
+      Go to "Your Stats" to see your win percentage!
+    </p>
   </div>
-  <NuxtLink to="./homepage">Home Page</NuxtLink><br>
-  <NuxtLink to="./stats">Your Stats</NuxtLink><br>
+
   <p>You are logged in as {{ user.email }}</p>
-  <button @click.prevent="logout">Log Out</button>
+
 </div>
 </template>
 
