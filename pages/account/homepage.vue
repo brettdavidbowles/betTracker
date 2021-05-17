@@ -10,7 +10,7 @@
         This app keeps track of <a href='https://en.wikipedia.org/wiki/Proposition_bet' class='text-blue-700 underline'>prop bets</a> made on NBA player points, assists, and total rebounds.<br>
         The "Add Bets" page will allow you to add bets and track whether you won or lost the bet.<br>
         The "Stats" page keeps track of your win percentage.<br>
-        All actual data is pulled from the <a href='balldontlie.io' class='text-blue-700 underline'>balldontlie API</a>.
+        All actual data is pulled from the <a href='https://balldontlie.io' class='text-blue-700 underline'>balldontlie API</a>.
     </p>
     <p>You are logged in as {{ user.email }}</p>
   </div>
