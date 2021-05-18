@@ -11,13 +11,13 @@
 
 <script>
 import { mapState } from 'vuex'
-import Card from '../components/Card'
+// import Card from '../components/Card'
 
 export default {
   name: 'Pages',
-  components: {
-    Card
-  },
+  // components: {
+  // Card
+  // },
   computed: {
     ...mapState([
       'players',

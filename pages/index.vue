@@ -1,11 +1,14 @@
 <template>
-  <div class="container">
-    <form @submit.prevent="submit">
-    <input type="text" placeholder="Email" v-model="email">
-    <input type="password" placeholder="Password" v-model="password">
-    <button type="submit">Log In</button>
-    </form>
-    <NuxtLink to="./signup">Need an account? Sign up here!</NuxtLink>
+  <div class="bg-court-background h-screen bg-cover bg-no-repeat bg-center flex items-center justify-center">
+    <div class="text-center">
+      <p class="text-white block text-6xl">NBA Bet Book</p>
+      <form @submit.prevent="submit">
+      <input type="text" placeholder="Email" v-model="email">
+      <input type="password" placeholder="Password" v-model="password">
+      <button type="submit" class="text-white underline">Log In</button>
+      </form>
+      <NuxtLink to="./signup" class="text-white text-center underline">Need an account? Sign up here!</NuxtLink>
+    </div>
     {{ user }}
   </div>
 
