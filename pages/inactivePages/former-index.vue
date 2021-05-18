@@ -69,15 +69,10 @@
 
 <script>
 import { mapState } from 'vuex'
-// import Table from '../components/Table'
-// import PercentageTracker from '../components/PercentageTracker'
 
 export default {
   name: 'App',
-  // components: {
-  // Table,
-  // PercentageTracker
-  // },
+
   data () {
     return {
       playerFirstName: '',
