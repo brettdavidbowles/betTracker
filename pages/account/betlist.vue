@@ -13,7 +13,7 @@
         Date: 10/29/2003, Lebron James<br>
         Date: 02/02/1997, Kobe Bryant<br>
         Date: 03/25/1986, Michael Jordan<br>
-        Date: 12/21/1979, Larry Bird<br>
+        Date: 11/06/2000, Scottie Pippen<br>
         Date: 03/25/2009, Shaquille O'Neal
     </p>
   </div>
