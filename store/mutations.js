@@ -54,6 +54,5 @@ export default {
   },
   changeBetFormTrigger (state) {
     state.betFormTrigger === 0 ? state.betFormTrigger = 1 : state.betFormTrigger = 0
-    console.log(state.betFormTrigger)
   }
 }

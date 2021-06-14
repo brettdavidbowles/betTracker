@@ -87,7 +87,6 @@ export default {
         this.$store.commit('changeBetFormTrigger')
         this.setFirebaseBet()
         this.clearLocalData()
-        console.log(this.stats.statsNeeded)
         // this.$store.commit('setNeededStat', window['retrieved' + this.statTypes[this.statTypes.length - 1].replace(' ', '')])
       } else {
         alert('Incomplete Form')

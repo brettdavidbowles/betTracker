@@ -1,18 +1,12 @@
 <template>
-  <div v-if="this.user" class='relative h-48'>
-    <div class='flex underline text-blue-700 text-center'>
-      <button class='w-1/5' @click.prevent="betlistRoute">Add Bets</button>
-      <NuxtLink to="./stats" class='w-1/5'>Your Stats</NuxtLink>
-      <button @click.prevent="logout" class='w-1/5'>Log Out</button>
+  <div>
+    <div v-if="this.user">
+      <p> Welcome to the NBA proposition bet tracker! 
+      <button @click.prevent="betlistRoute">Add Bets</button><br>
+      <NuxtLink to="./stats">Your Stats</NuxtLink><br>
+      <p>You are logged in as {{ user.email }}</p>
+      <button @click.prevent="logout">Log Out</button><br>
     </div>
-    <h2 class='text-lg'><b>Welcome to the NBA Proposition Bet Tracker!</b></h2>
-    <p>
-        This app keeps track of <a href='https://en.wikipedia.org/wiki/Proposition_bet' class='text-blue-700 underline'>prop bets</a> made on NBA player points, assists, and total rebounds.<br>
-        The "Add Bets" page will allow you to add bets and track whether you won or lost the bet.<br>
-        The "Stats" page keeps track of your win percentage.<br>
-        All actual data is pulled from the <a href='https://balldontlie.io' class='text-blue-700 underline'>balldontlie API</a>.
-    </p>
-    <p>You are logged in as {{ user.email }}</p>
   </div>
 </template>
 
@@ -45,6 +39,7 @@ export default {
     setupFirebase () {
       this.$fire.auth.onAuthStateChanged((user) => {
         if (user) {
+          console.log('logged in')
           this.loggedIn = true
         } else {
           this.loggedIn = false
